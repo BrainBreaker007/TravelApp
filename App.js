@@ -1,10 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import AppNavigator from './src/navigations/Navigator'
-import * as Font from 'expo-font';
-import * as firebase from 'firebase';
-import {AppLoading} from 'expo'
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View, Image } from "react-native";
+import AppNavigator from "./src/navigations/Navigator";
+import * as Font from "expo-font";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import * as firebase from "firebase";
+import { AppLoading } from "expo";
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyAID2GgCDimftouNUMJ8nmnVedHqbxI2dY",
@@ -18,24 +19,30 @@ import {AppLoading} from 'expo'
 // let app =firebase.initializeApp(firebaseConfig);
 // export const db = app.database();
 
-export default class App extends React.Component{
+export default class App extends React.Component {
   state = {
-    isFontLoaded : false
-  }
-  async componentDidMount(){
+    isFontLoaded: false,
+  };
+  async componentDidMount() {
     await Font.loadAsync({
-      'RobotoBold' : require('./src/fonts/Roboto-Bold.ttf'),
-      'RobotoRegular' : require('./src/fonts/Roboto-Regular.ttf'),
-      'MotionPicture' : require('./src/fonts/MotionPicture.ttf'),
-      'SemiBold' : require('./src/fonts/Montserrat-SemiBold.otf'),
-      'Medium' : require('./src/fonts/Montserrat-Medium.otf'),
-      'Regular' : require('./src/fonts/Montserrat-Regular.otf'),
+      RobotoBold: require("./src/fonts/Roboto-Bold.ttf"),
+      RobotoRegular: require("./src/fonts/Roboto-Regular.ttf"),
+      MotionPicture: require("./src/fonts/MotionPicture.ttf"),
+      SemiBold: require("./src/fonts/Montserrat-SemiBold.otf"),
+      Medium: require("./src/fonts/Montserrat-Medium.otf"),
+      Regular: require("./src/fonts/Montserrat-Regular.otf"),
     });
-    this.setState({isFontLoaded:true})
+    this.setState({ isFontLoaded: true });
   }
-  render(){
-    return(
-      (this.state.isFontLoaded === true) ? (<AppNavigator/>):(<AppNavigator/>)
+  render() {
+    return this.state.isFontLoaded === true ? (
+      <SafeAreaProvider>
+        <AppNavigator />
+      </SafeAreaProvider>
+    ) : (
+      <SafeAreaProvider>
+        <AppNavigator />
+      </SafeAreaProvider>
     );
   }
 }

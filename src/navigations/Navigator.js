@@ -3,6 +3,7 @@ import { createAppContainer } from "react-navigation";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
 import React, { Component } from "react";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import {
   Image,
   Text,
@@ -79,7 +80,7 @@ class CustomDrawer extends React.Component {
           <Body
             style={{
               backgroundColor: "#fff",
-              borderRadius: 75,
+              borderRadius: 55,
               height: 200,
               marginBottom: 5,
             }}
@@ -93,6 +94,9 @@ class CustomDrawer extends React.Component {
             </Text>
             <Text style={styles.Textemail}>
               {this.state.sData ? this.state.sData.Email : ""}
+            </Text>
+            <Text style={styles.Textphone}>
+              {this.state.sData ? this.state.sData.Phone : ""}
             </Text>
           </Body>
         </Header>
@@ -206,7 +210,7 @@ const AppNavigator = createDrawerNavigator(
   },
   {
     unmountInactiveRoutes: true,
-    initialRouteName: "Login",
+    initialRouteName: "Home",
     contentComponent: CustomDrawer,
 
     contentOptions: {
@@ -242,10 +246,15 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     color: "#000",
   },
+  Textphone: {
+    fontFamily: "RobotoBold",
+    fontSize: 16,
+    alignSelf: "center",
+    color: "#000",
+  },
   Textemail: {
     fontFamily: "RobotoBold",
     color: "#000",
-    marginBottom: 10,
     alignSelf: "center",
   },
   drawerHeader: {

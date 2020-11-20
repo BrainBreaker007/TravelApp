@@ -2,6 +2,7 @@ import React from "react";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { DrawerActions } from "react-navigation-drawer";
+import firebase from "../config";
 import {
   View,
   Text,
@@ -31,6 +32,10 @@ export default class Home extends React.Component {
   }
   componentDidMount() {
     //this.fetchList();
+
+    firebase.auth().onAuthStateChanged((user) => {
+      this.props.navigation.navigate(user ? "Home" : "Login");
+    });
 
     BackHandler.addEventListener(
       "hardwareBackPress",
@@ -77,7 +82,6 @@ export default class Home extends React.Component {
         <View
           style={{
             flexDirection: "row",
-            marginTop: 20,
             alignItems: "center",
             paddingHorizontal: 20,
           }}

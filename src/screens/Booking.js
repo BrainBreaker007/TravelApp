@@ -32,21 +32,17 @@ export default function Booking({ navigation }) {
 
   const _selectedValue = (index) => {
     setState({ index });
-    // setcurrencyState({ index });
   };
 
   const _selectedValue1 = (index1) => {
     setState1({ index1 });
-    // setcurrencyState1({ index1 });
   };
 
   const _selectedCurrencyValue = (index) => {
-    // setState({ index });
     setcurrencyState({ index });
   };
 
   const _selectedCurrencyValue1 = (index1) => {
-    // setState1({ index1 });
     setcurrencyState1({ index1 });
   };
 
@@ -139,9 +135,9 @@ export default function Booking({ navigation }) {
           endTime: [date.getHours() + 5] + ":" + date.getMinutes(),
         });
     });
-
     Alert.alert("Ticket Booked! We will notify to shortly");
   };
+
   return (
     <ImageBackground
       source={require("../images/back.png")}
